@@ -1,4 +1,6 @@
-
+/*
+ https://github.com/danwild/estimate-error-bar
+ */
 var EstimateErrorBar = function(){
 
 	var _svgContainer;
@@ -15,8 +17,8 @@ var EstimateErrorBar = function(){
 		var redMax = options.redMax;
 
 		// find our max (better handle max > 10 just in case)
-		if(+data.params['percentile-90'] > redMax){
-			redMax = Math.ceil(+data.params['percentile-90'] * 1.1);
+		if(+data['percentile-90'] > redMax){
+			redMax = Math.ceil(+data['percentile-90'] * 1.1);
 		}
 
 		// setup the SVG container
@@ -46,7 +48,7 @@ var EstimateErrorBar = function(){
 			.attr("font-size", options.fontSize)
 			.text(redMax);
 
-		var unitsLabel = data.params.units + ' / ' + data.params['context-units'];
+		var unitsLabel = data.units + ' / ' + data['context-units'];
 		var axisLabel = _svgContainer.append("text")
 			.attr("x", (barWidth + labelWidth) / 2)
 			.attr("y", barHeight + labelHeight)
@@ -79,7 +81,7 @@ var EstimateErrorBar = function(){
 			.attr("height", barHeight);
 
 		// min/max lines, ad connect them
-		var scaledMin = linearScale(+data.params['percentile-10']);
+		var scaledMin = linearScale(+data['percentile-10']);
 		var minLine = _svgContainer.append("line")
 			.attr("x1", scaledMin)
 			.attr("y1", 5)
@@ -88,7 +90,7 @@ var EstimateErrorBar = function(){
 			.attr("stroke-width", 2)
 			.attr("stroke", "#444");
 
-		var scaledMax = linearScale(+data.params['percentile-90']);
+		var scaledMax = linearScale(+data['percentile-90']);
 		var maxLine = _svgContainer.append("line")
 			.attr("x1", scaledMax)
 			.attr("y1", 5)
@@ -106,7 +108,7 @@ var EstimateErrorBar = function(){
 			.attr("stroke", "#444");
 
 		// median circle needs to go in a block so we can center text
-		var scaledMedian = linearScale(+data.params['median']);
+		var scaledMedian = linearScale(+data['median']);
 		var medianBlock = _svgContainer.append("g")
 			.attr("transform", function(d){ return "translate("+scaledMedian+","+barHeight / 2+")" });
 
@@ -122,10 +124,10 @@ var EstimateErrorBar = function(){
 			.attr("dy", function(d){ return options.fontSize / 3; })
 			.attr("font-size", options.fontSize)
 			.style("fill", "#FFF")
-			.text(data.params['median']);
+			.text(data['median']);
 
 		// tooltip
-		var tooltipText = "Median estimate is "+data.params['median'] + " "+ unitsLabel;
+		var tooltipText = "Median estimate is "+data['median'] + " "+ unitsLabel;
 		var tooltip = d3.select("body")
 			.append("div")
 			.style("position", "absolute")
