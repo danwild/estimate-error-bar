@@ -3,4 +3,5 @@
 Simple error bar with qualitative range bands.<br/>
 Used to display probabilistic statistics for model runtime estimates.
 
-<p>See `index.html` for example usage.</p>
+<br/><br/>
+See [index.html](index.html) for example usage.
