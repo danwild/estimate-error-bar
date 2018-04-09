@@ -38,16 +38,13 @@
 <script>
 
 	var data = {
-		"command": "runtime-estimate",
-		"params": {
-			"context-units": "run",
-			"est-id": "9",
-			"median": "4",
-			"percentile-10": "2",
-			"percentile-90": "7",
-			"status": "finished",
-			"units": "hours"
-		}
+		"context-units": "run",
+		"est-id": "9",
+		"median": "4",
+		"percentile-10": "2",
+		"percentile-90": "7",
+		"status": "finished",
+		"units": "hours"
 	};
 
 	var options = {
@@ -61,7 +58,8 @@
 		fontSize: 12
 	};
 
-	EstimateErrorBar.create(data, options);
+	var estimateErrorBar = new EstimateErrorBar(d3);
+	estimateErrorBar.create(data, options);
 
 </script>
 
