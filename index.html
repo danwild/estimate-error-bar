@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>D3 Estimate Error Bar</title>
+	<script src="d3.v5.min.js"></script>
+	<style>
+
+		h2 {
+			margin-bottom: 50px;
+		}
+
+		main {
+			text-align: center;
+			padding: 50px;
+		}
+
+		.estimate-bar-tooltip {
+			background: #444;
+			padding: 10px 8px;
+			color: #FFF;
+			font-size: 14px;
+		}
+
+	</style>
+
+</head>
+<body>
+
+	<main>
+		<h2>D3 Estimate Error Bar</h2>
+		<div id="error-bar"></div>
+	</main>
+
+</body>
+
+<script src="estimate-error-bar.js"></script>
+<script>
+
+	var data = {
+		"command": "runtime-estimate",
+		"params": {
+			"context-units": "run",
+			"est-id": "9",
+			"median": "4",
+			"percentile-10": "2",
+			"percentile-90": "7",
+			"status": "finished",
+			"units": "hours"
+		}
+	};
+
+	var options = {
+		containerId: "error-bar",
+		maxWidth: 800,
+		maxHeight: 60,
+		greenMax: 6,
+		yellowMax: 8,
+		redMax: 10,
+		fontFamily: "sans-serif",
+		fontSize: 12
+	};
+
+	EstimateErrorBar.create(data, options);
+
+</script>
+
+</html>
