@@ -1,7 +1,4 @@
-/*
- https://github.com/danwild/estimate-error-bar
- */
-var EstimateErrorBar = function(){
+﻿var EstimateErrorBar = function(d3){
 
 	var _svgContainer;
 
@@ -124,7 +121,7 @@ var EstimateErrorBar = function(){
 			.attr("dy", function(d){ return options.fontSize / 3; })
 			.attr("font-size", options.fontSize)
 			.style("fill", "#FFF")
-			.text(data['median']);
+			.text(parseInt(data['median']));
 
 		// tooltip
 		var tooltipText = "Median estimate is "+data['median'] + " "+ unitsLabel;
@@ -143,7 +140,10 @@ var EstimateErrorBar = function(){
 	}
 
 	function destroy(){
-		_svgContainer.selectAll("*").remove();
+		if(_svgContainer){
+			_svgContainer.selectAll("*").remove();
+			_svgContainer.remove();
+		}
 	}
 
 	return {
@@ -151,5 +151,5 @@ var EstimateErrorBar = function(){
 		destroy: destroy
 	}
 
-}();
+};
 
