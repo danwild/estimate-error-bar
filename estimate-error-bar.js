@@ -26,7 +26,7 @@
 		// create our scale
 		var linearScale = d3.scaleLinear()
 			.domain([0, redMax]) // set data domain
-			.range([0, barWidth]); // and fit to pixel range
+			.range([labelWidth, barWidth]); // and fit to pixel range
 
 		// labels
 		var minLabel = _svgContainer.append("text")
@@ -54,7 +54,7 @@
 			.attr("font-size", options.fontSize)
 			.style("text-anchor", "middle")
 			.text(unitsLabel);
-
+		
 		// coloured rectangles
 		var green = _svgContainer.append("rect")
 			.attr("x", labelWidth)
@@ -130,12 +130,10 @@
 			.style("position", "absolute")
 			.style("z-index", "99999")
 			.style("visibility", "hidden")
-			.style("font-family", options.fontFamily)
-			.style("font-size", options.fontSize)
 			.attr("class", "estimate-bar-tooltip")
 			.text(tooltipText);
 		_svgContainer.on("mouseover", function(){return tooltip.style("visibility", "visible");})
-			.on("mousemove", function(){return tooltip.style("top", (event.pageY-50)+"px").style("left",(event.pageX+10)+"px");})
+			.on("mousemove", function(){return tooltip.style("top", parseInt(event.pageY-50)+"px").style("left", parseInt(event.pageX+10)+"px");})
 			.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 	}
 
